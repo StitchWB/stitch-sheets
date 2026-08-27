@@ -1,0 +1,238 @@
+{
+  "schema": "stitch.plugin/v2",
+  "id": "stitch-sheets",
+  "name": "Stitch Sheets",
+  "version": "0.1.0",
+  "service": "google_sheets",
+  "kind": "service",
+  "engine": {
+    "min": "0.3.0",
+    "api": 2
+  },
+  "depends": [],
+  "entry": {
+    "module": "stitch_sheets"
+  },
+  "capabilities": [],
+  "outputs": [],
+  "signature": "",
+  "contributions": {
+    "commands": [
+      {
+        "name": "test_connection",
+        "readonly": true
+      },
+      {
+        "name": "fetch_dataset",
+        "readonly": true
+      },
+      {
+        "name": "init_schema",
+        "readonly": false
+      },
+      {
+        "name": "upsert_link",
+        "readonly": false
+      },
+      {
+        "name": "delete_link",
+        "readonly": false
+      },
+      {
+        "name": "upsert_account_link",
+        "readonly": false
+      },
+      {
+        "name": "delete_account_link",
+        "readonly": false
+      },
+      {
+        "name": "upsert_profile_link",
+        "readonly": false
+      },
+      {
+        "name": "delete_profile_link",
+        "readonly": false
+      },
+      {
+        "name": "upsert_auth_method",
+        "readonly": false
+      },
+      {
+        "name": "delete_auth_method",
+        "readonly": false
+      },
+      {
+        "name": "upsert_account_auth_link",
+        "readonly": false
+      },
+      {
+        "name": "delete_account_auth_link",
+        "readonly": false
+      },
+      {
+        "name": "start_oauth",
+        "readonly": false
+      },
+      {
+        "name": "exchange_oauth_code",
+        "readonly": false
+      }
+    ],
+    "ui": {
+      "kind": "declarative",
+      "tabs": [
+        {
+          "id": "sheets",
+          "label": "stitch-sheets.tab",
+          "icon": "Share2",
+          "page": "main"
+        }
+      ],
+      "page": {
+        "title": "stitch-sheets.title",
+        "nodes": [
+          {
+            "kind": "section",
+            "title": "stitch-sheets.identities",
+            "nodes": [
+              {
+                "kind": "table",
+                "id": "identities",
+                "columns": [
+                  {
+                    "key": "identity_id",
+                    "label": "ID"
+                  },
+                  {
+                    "key": "display_name",
+                    "label": "stitch-sheets.name"
+                  },
+                  {
+                    "key": "email",
+                    "label": "Email"
+                  },
+                  {
+                    "key": "status",
+                    "label": "stitch-sheets.status"
+                  }
+                ],
+                "source": {
+                  "command": "fetch_dataset"
+                },
+                "rowsKey": "identitiesFlat"
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "title": "stitch-sheets.links",
+            "nodes": [
+              {
+                "kind": "table",
+                "id": "links",
+                "columns": [
+                  {
+                    "key": "link_id",
+                    "label": "ID"
+                  },
+                  {
+                    "key": "identity_id",
+                    "label": "stitch-sheets.identity"
+                  },
+                  {
+                    "key": "provider",
+                    "label": "stitch-sheets.provider"
+                  },
+                  {
+                    "key": "account_id",
+                    "label": "stitch-sheets.account"
+                  },
+                  {
+                    "key": "role",
+                    "label": "stitch-sheets.role"
+                  },
+                  {
+                    "key": "status",
+                    "label": "stitch-sheets.status"
+                  }
+                ],
+                "source": {
+                  "command": "fetch_dataset"
+                },
+                "rowsKey": "linksFlat",
+                "rowActions": [
+                  {
+                    "id": "delete-link-row",
+                    "label": "stitch-sheets.deleteRow",
+                    "command": "delete_link",
+                    "variant": "danger",
+                    "paramsFromRow": {
+                      "linkId": "link_id"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "section",
+            "nodes": [
+              {
+                "kind": "button",
+                "id": "connect-google",
+                "label": "stitch-sheets.connect",
+                "command": "start_oauth",
+                "variant": "primary"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "i18n": {
+      "ru": {
+        "stitch-sheets": {
+          "title": "Identity Graph",
+          "tab": "Identity Graph",
+          "identities": "Идентичности",
+          "links": "Связи",
+          "connect": "Подключить Google",
+          "deleteRow": "Удалить",
+          "empty": "Нет данных",
+          "name": "Имя",
+          "status": "Статус",
+          "identity": "Идентичность",
+          "provider": "Провайдер",
+          "account": "Аккаунт",
+          "role": "Роль"
+        }
+      },
+      "en": {
+        "stitch-sheets": {
+          "title": "Identity Graph",
+          "tab": "Identity Graph",
+          "identities": "Identities",
+          "links": "Links",
+          "connect": "Connect Google",
+          "deleteRow": "Delete",
+          "empty": "No data",
+          "name": "Name",
+          "status": "Status",
+          "identity": "Identity",
+          "provider": "Provider",
+          "account": "Account",
+          "role": "Role"
+        }
+      }
+    },
+    "storage": {
+      "sqlite": true,
+      "migrations": "raw_sql"
+    }
+  },
+  "generated_by": {
+    "tool": "stitch_plugin_tools",
+    "scaffold": 3
+  }
+}
