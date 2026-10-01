@@ -234,5 +234,77 @@
   "generated_by": {
     "tool": "stitch_plugin_tools",
     "scaffold": 3
-  }
+  },
+  "description": {
+    "ru": "Загружает Identity Graph из Google Таблиц (сервис-аккаунт JWT или OAuth) и показывает идентичности и связи на вкладке Identity Graph. Даёт RPC-команды для CRUD связей, аккаунтов, профилей и методов авторизации.",
+    "en": "Ingests the Identity Graph dataset from Google Sheets (service-account JWT or OAuth) and shows identities and links on the Identity Graph tab. Exposes RPC commands for CRUD of links, accounts, profiles and auth methods."
+  },
+  "author": "WhiteBite",
+  "category": "data",
+  "status": "beta",
+  "icon": "📊",
+  "features": [
+    {
+      "title": {
+        "ru": "Загрузка датасета Identity Graph через Google Sheets API",
+        "en": "Identity Graph dataset fetch via the Google Sheets API"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "CRUD связей, аккаунтов, профилей и методов авторизации",
+        "en": "CRUD for links, account links, profile links and auth methods"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "OAuth-вход Google через reverse-RPC хоста (PKCE)",
+        "en": "Google OAuth sign-in via host reverse RPC (PKCE)"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "Инициализация схемы таблицы (init_schema, листы SVC_*)",
+        "en": "Spreadsheet schema init (init_schema, SVC_* sheets)"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "Локальный кэш IDENTITIES/LINKS в SQLite для UI",
+        "en": "Local SQLite cache of IDENTITIES/LINKS for the UI"
+      },
+      "status": "stable"
+    },
+    {
+      "title": {
+        "ru": "Вкладка Identity Graph: таблицы идентичностей и связей",
+        "en": "Identity Graph tab: identities and links tables"
+      },
+      "status": "stable"
+    }
+  ],
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-08-22",
+      "changes": [
+        {
+          "ru": "Загрузка Identity Graph и CRUD-команды",
+          "en": "Identity Graph fetch and CRUD commands"
+        },
+        {
+          "ru": "OAuth PKCE через хост и тест подключения сервис-аккаунта",
+          "en": "Host-driven OAuth PKCE and service-account connection test"
+        },
+        {
+          "ru": "Декларативная вкладка с таблицами идентичностей и связей",
+          "en": "Declarative tab with identities and links tables"
+        }
+      ]
+    }
+  ]
 }
