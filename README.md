@@ -10,6 +10,9 @@ links in a Google Spreadsheet, with service-account JWT or OAuth auth.
 - **Self-contained:** no `stitch_backend` imports; owns a SQLite cache of sheet snapshots. Auth is
   service-account JWT (self-contained) or OAuth tokens obtained from the host via reverse RPC.
 
+The Identity Graph surface is owned by the manager core (Accounts page panels over the core
+`googleSheets.ts` module), so this plugin ships no `ui` contribution — commands only.
+
 ## Commands
 
 `test_connection`, `fetch_dataset`, `init_schema`, `upsert_link`, `delete_link`,
@@ -20,7 +23,7 @@ links in a Google Spreadsheet, with service-account JWT or OAuth auth.
 ## Layout
 
 ```
-plugin.json              manifest (schema v2, declarative UI + i18n + commands)
+plugin.json              manifest (schema v2, i18n + commands, no ui)
 stitch_sheets/
   __main__.py            JSON-RPC entry point (RpcPluginServer + reverse RPC)
   service.py             Google Sheets API client (JWT + OAuth)
